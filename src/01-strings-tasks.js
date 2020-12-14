@@ -202,8 +202,11 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const top = `┌${'─'.repeat(width - 2)}┐\n`;
+  const center = `│${' '.repeat(width - 2)}│\n`.repeat(height - 2);
+  const bottom = `└${'─'.repeat(width - 2)}┘\n`;
+  return top + center + bottom;
 }
 
 
@@ -224,13 +227,11 @@ function getRectangleString(/* width, height */) {
  *
  */
 function encodeToRot13(str) {
-  const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
-  const inputArr = input.split('');
-  const outputArr = output.split('');
+  const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+  const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'.split('');
   return str.split('').map((item) => {
-    if (inputArr.indexOf(item) > -1) {
-      return outputArr[inputArr.indexOf(item)];
+    if (input.indexOf(item) > -1) {
+      return output[input.indexOf(item)];
     }
     return item;
   }).join('');
