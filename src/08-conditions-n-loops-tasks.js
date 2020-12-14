@@ -295,14 +295,11 @@ function getDigitalRoot(num) {
   const strNum = String(num);
   let sum = 0;
   let result = 0;
-  // eslint-disable-next-line no-restricted-syntax
-  for (const char of strNum) {
-    sum += Number(char);
-  }
-  // eslint-disable-next-line no-restricted-syntax
-  for (const char of String(sum)) {
-    result += Number(char);
-  }
+
+  sum = strNum.split('').reduce((x, y) => Number(x) + Number(y));
+
+  result = String(sum).split('').reduce((x, y) => Number(x) + Number(y));
+
   return result;
 }
 
